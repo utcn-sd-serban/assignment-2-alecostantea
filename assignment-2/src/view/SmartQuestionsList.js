@@ -11,10 +11,21 @@ const mapModelStateToComponentState = modelState => ({
     tags: modelState.newQuestion.tags
 });
 
+const comparator = function(question1, question2)  {
+    if (question1.creationDate > question2.creationDate){
+        return 1;
+    }
+    if (question1.creationDate < question2.creationDate){
+        return -1;
+    }
+    return 0;
+}
+
 export default class SmartQuestionsList extends Component {
     constructor(){
         super();
         this.state = mapModelStateToComponentState(questionModel.state);
+        this.state.questions.sort(comparator);
         this.listener = modelState => this.setState(mapModelStateToComponentState(modelState));
         questionModel.addListener("change", this.listener);
 

@@ -8,12 +8,14 @@ import {EventEmitter} from "events";
                 title: "titlu frumos",
                 text: "Cum fac asta?",
                 author: "alexpopa09",
-                tags: "cool tags are for cool kids"
+                tags: "cool tags are for cool kids",
+                creationDate: Date("2019-09-16")
              },{
                  title: "lalala",
                  text: "Ajutor",
                  author: "maria97",
-                 tags:"tags cool ceva"
+                 tags:"tags cool ceva",
+                 creationDate: Date("2018-10-2")
              
              }],
              newQuestion: {
@@ -31,7 +33,8 @@ import {EventEmitter} from "events";
                     title: title,
                     text: text,
                     author: author,
-                    tags: tags
+                    tags: tags,
+                    creationDate: Date.now()
                 }])
             };
             this.emit("change", this.state);
