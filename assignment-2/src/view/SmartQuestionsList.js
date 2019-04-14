@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import userModel from "../model/userModel";
-import UsersList from "./UsersList";
-import usersListPresenter from "../presenter/usersListPresenter";
 import QuestionsList from "./QuestionsList"
 import questionModel from "../model/questionModel"
 import questionsListPresenter from "../presenter/questionsListPresenter";
