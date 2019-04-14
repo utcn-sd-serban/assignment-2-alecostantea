@@ -27,6 +27,7 @@ export default class SmartUsersList extends Component {
             <UsersList
             onCreate={usersListPresenter.onCreate}
             onChange={usersListPresenter.onChange}
+            onSignin={usersListPresenter.onSignin}
             Username = {this.state.newUserUsername}
             Password = {this.state.newUserPassword}
             users = {this.state.users} />

@@ -1,20 +1,21 @@
 import React from "react";
 
 const UsersList = ({users, title, newUserUsername, newUserPassword,
-     onCreate, onChange}) => (
+     onCreate, onChange, onSignin}) => (
     <div>
-        <h2>{ title || "Users"}</h2>
+        <h2 className="title">{ title || "Users"}</h2>
         <div>
-            <label>Username: </label>
+            <label className="label">Username: </label>
             <input value = {newUserUsername} onChange={ e => onChange("Username", e.target.value ) }/>
             <br />
-            <label>Password: </label>
+            <label className="label">Password: </label>
             <input value = {newUserPassword} onChange={ e => onChange("Password", e.target.value ) }/>
             <br />
-            <button onClick={onCreate}>Create</button>
+            <button className="button" onClick={onCreate}>Create</button>
+            <button className="button" onClick={onSignin}>Sign in</button>
     </div>
         <hr />
-        <table border = "1">
+        <table className="table is-striped is-hoverable">
             <thead>
                 <tr>
                     <th>Username</th>
