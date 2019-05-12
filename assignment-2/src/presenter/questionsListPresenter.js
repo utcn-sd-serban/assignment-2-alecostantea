@@ -15,23 +15,29 @@ class QuestionsListPresenter {
     }
 
     onSearchTitle(){
-        let questions = questionModel.state.questions.slice();
-        questionModel.state.questions= [];
-        for(let index = 0 ; index < questions.length; index++) {
-            if(questions[index].title.includes(questionModel.state.newQuestion.title)) {
-                questionModel.addQuestion(questions[index].title, questions[index].text,questions[index].author, questions[index].tags)
-            }
-        }
+        questionModel.filterTitle(questionModel.state.newQuestion.title);
+        // let questions = questionModel.state.questions.slice();
+        // questionModel.state.questions= [];
+        // for(let index = 0 ; index < questions.length; index++) {
+        //     if(questions[index].title.includes(questionModel.state.newQuestion.title)) {
+        //         questionModel.addQuestion(questions[index].title, questions[index].text,questions[index].author, questions[index].tags)
+        //     }
+        // }
     }
 
     onSearchTag(){
-        let questions = questionModel.state.questions.slice();
-        questionModel.state.questions= [];
-        for(let index = 0 ; index < questions.length; index++) {
-            if(questions[index].tags.split(" ").includes(questionModel.state.newQuestion.tags)) {
-                questionModel.addQuestion(questions[index].title, questions[index].text,questions[index].author, questions[index].tags)
-            }
-        }
+        questionModel.filterTag(questionModel.state.newQuestion.tags);
+        // let questions = questionModel.state.questions.slice();
+        // questionModel.state.questions= [];
+        // for(let index = 0 ; index < questions.length; index++) {
+        //     if(questions[index].tags.split(" ").includes(questionModel.state.newQuestion.tags)) {
+        //         questionModel.addQuestion(questions[index].title, questions[index].text,questions[index].author, questions[index].tags)
+        //     }
+        // }
+    }
+
+    onInit(){
+        questionModel.loadQuestions();
     }
 
 

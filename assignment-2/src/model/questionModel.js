@@ -1,4 +1,7 @@
 import {EventEmitter} from "events";
+import RestClient from "../rest/RestClient";
+import userModel from "./userModel";
+
 
  class QuestionModel extends EventEmitter {
      constructor() {
@@ -26,18 +29,52 @@ import {EventEmitter} from "events";
             };
          }
 
+         loadQuestions(){               
+                const client = new RestClient(userModel.state.newUser.Username, userModel.state.newUser.Password);
+                return client.loadAllQuestions().then(questions => {
+                    this.state = {
+                        ...this.state,
+                        questions: questions
+                    };
+                    this.emit("change", this.state);
+                })
+         }
+
          addQuestion(title, text, author, tags){
-            this.state = {
-                ...this.state,
-                questions: this.state.questions.concat([{
-                    title: title,
-                    text: text,
-                    author: author,
-                    tags: tags,
-                    creationDate: Date.now()
-                }])
-            };
-            this.emit("change", this.state);
+            const client = new RestClient(userModel.state.newUser.Username, userModel.state.newUser.Password);
+            const question = {
+                id:0,
+                title: title,
+                text: text,
+                author: author,
+                tags: tags
+            } ;
+            console.log(JSON.stringify(question));
+            return client.addQuestion(question).then(() => {this.emit("change",this.state);});
+            
+         }
+
+         filterTitle(title){
+            const client = new RestClient(userModel.state.newUser.Username, userModel.state.newUser.Password);
+            return client.filterTitle(title).then(questions => {
+                this.state = {
+                    ...this.state,
+                    questions: questions
+                };
+                this.emit("change", this.state);
+            })
+            
+         }
+         filterTag(tag){
+            const client = new RestClient(userModel.state.newUser.Username, userModel.state.newUser.Password);
+            return client.filterTag(tag).then(questions => {
+                this.state = {
+                    ...this.state,
+                    questions: questions
+                };
+                this.emit("change", this.state);
+            })
+           
          }
 
          changeNewQuestionProperty(property, value){
